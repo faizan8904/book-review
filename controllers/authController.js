@@ -44,13 +44,13 @@ export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // 1. Check if user exists
+    // Check if user exists
     const user = await UserModel.findOne({ email });
     if (!user) {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    // 2. Verify password
+    // verifying password with comparepassword function which we created on user model
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
       return res.status(401).json({ error: "Invalid credentials" });

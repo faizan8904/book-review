@@ -23,7 +23,7 @@ const reviewSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
-// Ensure one review per user per book
+// one review per user per book
 reviewSchema.index({ book: 1, user: 1 }, { unique: true });
 
 export default mongoose.model('Review', reviewSchema);
